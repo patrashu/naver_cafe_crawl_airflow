@@ -327,63 +327,31 @@ def transform(df: pd.DataFrame, keyword: str) -> pd.DataFrame:
         df['view'] = df['view'].str.replace("조회 ", "")
         df.rename(
             columns={
-                'num': 'post_id', 'date': 'Date', 'title': 'Title', 'view': 'View',
-                'like': 'Like', 'time': 'Time', 'content': 'Body', 'comments': 'Comment',
-                'car_name': 'CarName', 'community': 'Community'
+                'date': 'upload_date', 'view': 'num_view', "url": "comm_url",
+                'like': 'num_like', 'time': 'upload_time', 'content': 'body',
             },
             inplace=True
         )
-        df.drop(['datetime'], axis=1, inplace=True)
-        return df
+        return df[[
+            'upload_date', 'upload_time', 'title', 'num_view', 'num_like', 
+            'body', 'comments', 'car_name', 'community', "comm_url"
+        ]]
 
     except:
         return False
-    
-
-def table_check_sql(table_name: str) -> str:
-    create_table_sql = f"""
-        CREATE TABLE IF NOT EXISTS {table_name} (
-            id SERIAL PRIMARY KEY,
-            post_id VARCHAR(255),
-            date TIMESTAMP,
-            title TEXT,
-            view INT,
-            like INT,
-            time TIME,
-            body TEXT,
-            comment TEXT,
-            car_name VARCHAR(255),
-            community VARCHAR(255)
-        );
-    """
-    with open("/opt/airflow/data/create_ioniq.sql", "w", encoding="utf-8") as f:
-        f.write(create_table_sql)
 
 
-def load(df: pd.DataFrame, table_name: str, save_txt_file: str | os.PathLike) -> None:
+def load(df: pd.DataFrame, save_csv_path: str | os.PathLike) -> None:
     """Save the transformed data to txt file
 
     Args:
         df (pd.DataFrame): Transformed data
-        save_txt_file (str | os.PathLike): Path to save the txt file
+        save_csv_path (str | os.PathLike): Path to save the txt file
     Returns:
         None
     """
-    parent_dir = os.path.dirname(save_txt_file)
+    parent_dir = os.path.dirname(save_csv_path)
     if not os.path.exists(parent_dir):
         os.makedirs(parent_dir)
-    
-    with open(save_txt_file, 'a', encoding='utf-8') as f:
-        for _, row in df.iterrows():
-            insert_statement = f"""
-            INSERT INTO {table_name} VALUES (
-                '{row['post_id']}', '{row['Date']}', '{row['Title']}', '{row['View']}',
-                '{row['Like']}', '{row['Time']}', '{row['Body']}', '{row['Comment']}',
-                '{row['CarName']}', '{row['Community']}'
-            );
-            """
-            f.write(insert_statement)
-            f.write("\n")
-    
-    print(f"Save the data to {save_txt_file}")
-    
+    df.to_csv(save_csv_path, index=False)
+    print(f"Save the data to {save_csv_path}")

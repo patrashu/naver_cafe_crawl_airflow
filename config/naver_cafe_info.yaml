@@ -9,7 +9,7 @@ ioniq:
   correct_word: ""
   max_page_num: -1
   table_name: "ioniq"
-  save_sql: "/opt/airflow/data/ioniq.sql"
+  save_csv: "/opt/airflow/data/ioniq.csv"
 
 grandeur:
   login_info: "config/login_info.env"
@@ -22,7 +22,7 @@ grandeur:
   correct_word: ""
   max_page_num: -1
   table_name: "grandeur"
-  save_sql: "/opt/airflow/data/grandeur.sql"
+  save_csv: "/opt/airflow/data/grandeur.csv"
 
 avante:
   login_info: "config/login_info.env"
@@ -35,4 +35,4 @@ avante:
   correct_word: ""
   max_page_num: -1
   table_name: "avante"
-  save_sql: "/opt/airflow/data/avante.sql"
+  save_csv: "/opt/airflow/data/avante.csv"
