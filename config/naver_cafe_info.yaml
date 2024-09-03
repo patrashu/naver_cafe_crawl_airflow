@@ -1,0 +1,38 @@
+ioniq:
+  login_info: "config/login_info.env"
+  cafe_url: "https://cafe.naver.com/cafeclip/"
+  search_type: "게시글 + 댓글"
+  keyword: "아이오닉"
+  select_all: ""
+  exclude_word: "출석 출첵 가입 등업신청 퇴근 썬팅 랩핑 튜닝"
+  select_any: ""
+  correct_word: ""
+  max_page_num: -1
+  table_name: "ioniq"
+  save_sql: "/opt/airflow/data/ioniq.sql"
+
+grandeur:
+  login_info: "config/login_info.env"
+  cafe_url: "https://cafe.naver.com/suddenattackskincafe/"
+  search_type: "게시글 + 댓글"
+  keyword: "그랜저"
+  select_all: ""
+  exclude_word: "출석 출첵 가입 등업신청 퇴근 썬팅 랩핑 튜닝"
+  select_any: ""
+  correct_word: ""
+  max_page_num: -1
+  table_name: "grandeur"
+  save_sql: "/opt/airflow/data/grandeur.sql"
+
+avante:
+  login_info: "config/login_info.env"
+  cafe_url: "https://cafe.naver.com/avantemd/"
+  search_type: "게시글 + 댓글"
+  keyword: "아반떼"
+  select_all: ""
+  exclude_word: "출석 출첵 가입 등업신청 퇴근 썬팅 랩핑 튜닝"
+  select_any: ""
+  correct_word: ""
+  max_page_num: -1
+  table_name: "avante"
+  save_sql: "/opt/airflow/data/avante.sql"

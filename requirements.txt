@@ -1,0 +1,7 @@
+requests
+pendulum
+pyyaml
+python-dotenv
+selenium
+webdriver_manager
+apache-airflow-providers-postgres
